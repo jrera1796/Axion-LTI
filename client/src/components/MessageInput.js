@@ -1,0 +1,28 @@
+import React, { useState } from 'react';
+import '../styles/MessageInput.css';
+
+const NewMessage = ({socket}) => {
+  const [value, setValue] = useState('');
+  const submitForm = (e) => {
+    e.preventDefault();
+    socket.emit('message', value);
+    setValue('');
+  };
+
+  return (
+    <div class="message-input-container">
+    <form onSubmit={submitForm}>
+      <input
+        autoFocus
+        value={value}
+        placeholder="Type your message"
+        onChange={(e) => {
+          setValue(e.currentTarget.value);
+        }}
+      />
+    </form>
+    </div>
+  );
+};
+
+export default NewMessage;
