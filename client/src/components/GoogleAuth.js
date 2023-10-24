@@ -7,7 +7,6 @@ const googleAuth = (props) => {
 
   const handleSignIn = (credentialResponse) => {
     const user = decode(credentialResponse.credential);
-    console.log(props.loggedIn)
     props.onSignIn(user);
 
   };

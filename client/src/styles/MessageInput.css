@@ -3,7 +3,7 @@ form {
   width: 100%;
 }
 
-input {
+textarea {
   width: 100%;
   padding: 0.5rem;
 }
@@ -11,9 +11,21 @@ input {
 .message-input-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   padding: 10px;
+}
+
+.message-input-container form {
+  flex-grow: 1;
+}
+
+.message-input-container textarea {
+  max-height: 200px; 
+  resize: none; 
+  overflow-wrap: break-word;
+  white-space: break-spaces;
 }

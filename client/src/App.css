@@ -1,3 +1,7 @@
+.App {
+  overflow: hidden;
+}
+
 .app-header {
   display: flex;
   justify-content: center;
@@ -6,20 +10,31 @@
   color: white;
 }
 
-.app-header > div {
+.app-header>div {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
+.chat-parent-container {
+  display: flex;
+  flex: 1;
+}
+
 .chat-container {
   display: flex;
+  flex: 1;
   height: 100vh;
   background-color: rgb(77, 81, 115);
   flex-direction: column;
   align-items: center;
   padding: 16px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .google-auth-container {

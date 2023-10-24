@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import AuthenticationComponent from './components/GoogleAuth';
 import ChatComponent from './components/ChatComponent';
+import Sidebar from './components/Sidebar';
 import './App.css'
 
 const App = () => {
@@ -18,14 +19,15 @@ const App = () => {
     <GoogleOAuthProvider clientId="945846848255-f2vmjd00h48paecb9bhifcpa7ngr0lu1.apps.googleusercontent.com">
       <div className="App">
         <header className="app-header">
-        <img height="200rem" alt="Axion Logo" src="/images/AxionLogo.png" />
+          <img height="200rem" alt="Axion Logo" src="/images/AxionLogo.png" />
 
           <AuthenticationComponent loggedIn={loggedIn} user={user} onSignIn={handleSignIn} />
         </header>
-
-        {loggedIn && <ChatComponent user={user} />}
-
-        {!loggedIn ? (<div>Please log in</div>):(<></>
+        <div className='main-container'>
+          {loggedIn && <Sidebar />}
+          {loggedIn && <ChatComponent user={user} />}
+        </div>
+        {!loggedIn ? (<div>Please log in</div>) : (<></>
         )}
 
       </div>

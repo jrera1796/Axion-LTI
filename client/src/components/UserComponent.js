@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/UserComponent.css'
 
 const UserComponent = ({ user }) => {
   const [status, setStatus] = useState('Active');
@@ -8,9 +9,9 @@ const UserComponent = ({ user }) => {
   
   };
 
-  const handleLogout = () => {
-    // Implement logic to log the user out
-  };
+  // const handleLogout = () => {
+  //   // Implement logic to log the user out
+  // };
 
   return (
     <div className="user-component">
