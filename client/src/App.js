@@ -5,6 +5,7 @@ import AuthenticationComponent from './components/GoogleAuth';
 import ChatComponent from './components/ChatComponent';
 import Sidebar from './components/Sidebar';
 import './App.css'
+import './styles/MediaQuery.css'
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);

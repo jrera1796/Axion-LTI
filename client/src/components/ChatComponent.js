@@ -37,7 +37,7 @@ const ChatComponent = ({ user }) => {
   // Chat logic
 
   return (
-    <div className='chat-parent-container'>
+    <>
       {socket ? (
         <div className="chat-container">
           <Messages socket={socket} onUserClick={(user, e) => { handleUserClick(user, e) }} />
@@ -48,7 +48,7 @@ const ChatComponent = ({ user }) => {
       )}
       {isUserModalVisible && <UserModal user={userForModal} style={{ position: 'fixed', top: modalPosition.y, left: modalPosition.x }}
       />}
-    </div>
+    </>
   );
 };
 

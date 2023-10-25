@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/Messages.css';
+const testing = true
 
 function Messages({ socket, onUserClick }) {
   const [messages, setMessages] = useState({});
@@ -48,31 +49,73 @@ function Messages({ socket, onUserClick }) {
     onUserClick(user, e);
   };
 
-  return (
-    <div className="message-list" ref={messagesContainerRef}>
-      {[...Object.values(messages)]
-        .sort((a, b) => a.time - b.time)
-        .map((message) => (
+  
+  if (testing) {
+    const randomDate = () => {
+      const currentDate = new Date();
+      const daysAgo = Math.floor(Math.random() * 7);
+      currentDate.setDate(currentDate.getDate() - daysAgo);
+      return currentDate;
+    };
+
+    const fakeMessages = Array.from({ length: 10 }, (_, index) => ({
+      id: index,
+      user: {
+        name: `User ${index + 1}`,
+        picture: 'URL_TO_USER_PICTURE', // You can add URLs to user pictures
+      },
+      value: `This is message ${index + 1} for testing purposes. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      time: randomDate().getTime(),
+    }));
+
+    return (
+      <div className="message-list" ref={messagesContainerRef}>
+        {fakeMessages.map((message) => (
           <div
             key={message.id}
             className="message-container"
             title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
           >
-            <span className="user"
-              onClick={(e) => handleNameClick(message.user, e)}
-            >
+            <span className="user">
+              <img src={message.user.picture} alt={message.user.name} />
               {message.user.name}:
             </span>
-
-            <span className="message" data-msg-id={message.id}>{message.value}</span>
-            <span className="date">{new Date(message.time).toLocaleTimeString()}</span>
+            <span className="message" data-msg-id={message.id}>
+              {message.value}
+            </span>
+            <span className="date">
+              {new Date(message.time).toLocaleTimeString()}
+            </span>
           </div>
-        ))
-      }
-    </div>
+        ))}
+      </div>
+    );
+  }
+  else {
+    return (
+      <div className="message-list" ref={messagesContainerRef}>
+        {[...Object.values(messages)]
+          .sort((a, b) => a.time - b.time)
+          .map((message) => (
+            <div
+              key={message.id}
+              className="message-container"
+              title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
+            >
+              <span className="user"
+                onClick={(e) => handleNameClick(message.user, e)}
+              >
+                {message.user.name}:
+              </span>
 
-
-  );
+              <span className="message" data-msg-id={message.id}>{message.value}</span>
+              <span className="date">{new Date(message.time).toLocaleTimeString()}</span>
+            </div>
+          ))
+        }
+      </div>
+    );
+  }
 }
 
 export default Messages;

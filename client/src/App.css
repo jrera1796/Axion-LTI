@@ -17,11 +17,6 @@
   justify-content: space-between;
 }
 
-.chat-parent-container {
-  display: flex;
-  flex: 1;
-}
-
 .chat-container {
   display: flex;
   flex: 1;
