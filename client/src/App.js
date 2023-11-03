@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import AuthenticationComponent from './components/GoogleAuth';

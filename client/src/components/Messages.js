@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/Messages.css';
-const testing = true
+const testing = true;
 
 function Messages({ socket, onUserClick }) {
   const [messages, setMessages] = useState({});
