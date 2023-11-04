@@ -25,7 +25,7 @@ const ChatComponent = ({ user }) => {
   };
 
   useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3000`);
+    const newSocket = io(`http:/localhost:3000`);
     setSocket(newSocket);
 
     if (newSocket && user) {
