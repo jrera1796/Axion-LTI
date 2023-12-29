@@ -4,7 +4,7 @@ import UserModal from './UserModal';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
 
-const ChatComponent = ({ user }) => {
+const ChatComponent = ({ user, selectedChannel, onMessage, onUserJoin, onUserLeave }) => {
   const [socket, setSocket] = useState(null);
   const [isUserModalVisible, setUserModalVisibility] = useState(false);
   const [userForModal, setUserForModal] = useState(null); // Add this state variable
@@ -25,14 +25,31 @@ const ChatComponent = ({ user }) => {
   };
 
   useEffect(() => {
-    const newSocket = io(`http:/localhost:3000`);
+    const newSocket = io(`http://${window.location.hostname}:3000/api`, {
+      query: { channel: selectedChannel.id, user: user },
+    });
     setSocket(newSocket);
 
-    if (newSocket && user) {
-      newSocket.emit('user', user);
-    }
-    return () => newSocket.close();
-  }, [setSocket, user]);
+    newSocket.on('connect', () => {
+      newSocket.emit('joinChannel', selectedChannel.id, user);
+    });
+
+    newSocket.on('message', (message) => {
+      onMessage(message);
+    });
+
+    newSocket.on('userJoined', (user) => {
+      onUserJoin(user);
+    });
+
+    newSocket.on('userLeft', (user) => {
+      onUserLeave(user);
+    });
+
+    return () => {
+      newSocket.close();
+    };
+  }, [selectedChannel, user, onMessage, onUserJoin, onUserLeave]);
 
   // Chat logic
 
