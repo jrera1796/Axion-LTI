@@ -11,7 +11,7 @@ const connectSocket = async (selectedChannel, user) => {
     
     newSocket.on('connect', () => {
       console.log("Socket connected successfully");
-      newSocket.emit('joinChannel', selectedChannel.id, user);
+      newSocket.emit('joinChannel', selectedChannel.id, user);fwfwefwe
       resolve(newSocket); // Resolve the promise once the socket is connected
     });
 
